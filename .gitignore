@@ -1,0 +1,33 @@
+# Created by https://www.gitignore.io/api/laravel
+
+### Laravel ###
+vendor/
+node_modules/
+
+# Laravel 4 specific
+bootstrap/compiled.php
+app/storage/
+
+# Laravel 5 & Lumen specific
+bootstrap/cache/
+.env.*.php
+.env.php
+.env
+
+# Rocketeer PHP task runner and deployment package. https://github.com/rocketeers/rocketeer
+.rocketeer/
+
+#https://laracasts.com/discuss/channels/general-discussion/gitignore-what-should-be-ignored?page=1
+/bootstrap/compiled.php
+/vendor
+/build/logs
+/build/coverage
+/app/tests/_log
+composer.phar
+.DS_Store
+/.idea
+/_ide_helper.php
+/app/config/packages
+/public/packages
+/node_modules
+.env
