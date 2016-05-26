@@ -2,6 +2,8 @@
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
+use Behat\Testwork\Hook\Scope\AfterSuiteScope;
+use Behat\Testwork\Hook\Scope\BeforeSuiteScope;
 use Laracasts\Behat\Context\Migrator;
 
 /**
@@ -23,12 +25,28 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext implements 
     }
 
     /**
+     * @BeforeSuite
+     */
+    public static function prepare(BeforeSuiteScope $beforeSuiteScope)
+    {
+        Artisan::call('migrate');
+        Artisan::call('db:seed');
+    }
+
+    /**
+     * @AfterSuite
+     */
+    public static function cleanup(AfterSuiteScope $afterSuiteScope)
+    {
+        Artisan::call('migrate:rollback');
+    }
+
+    /**
      * @Then I should see list of images
      */
     public function iShouldSeeListOfImages()
     {
         $this->assertElementOnPage(".gallery-item");
-
     }
 
     /**
