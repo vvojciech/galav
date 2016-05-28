@@ -58,5 +58,4 @@ if ((isset($_SERVER['HTTP_USER_AGENT'])) && ($_SERVER['HTTP_USER_AGENT'] === "Mo
     $app->loadEnvironmentFrom('.env.testing');
 }
 
-
 return $app;

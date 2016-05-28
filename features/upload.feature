@@ -10,3 +10,7 @@ Feature: As a user I want to browse, view and search for images
     And I upload an image
     Then I file should be uploaded correctly
     And I should see uploaded image "Funny Cat"
+
+  Scenario: Viewing uploaded images on profile
+    When I am on my profile page of "tester"
+    Then I should see list of images

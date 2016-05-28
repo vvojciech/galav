@@ -164,4 +164,13 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext implements 
         $this->assertElementContainsText("h1", $arg1);
     }
 
+    /**
+     * @When I am on my profile page of :arg1
+     */
+    public function iAmOnMyProfilePageOf($arg1)
+    {
+        $this->visit('/u/' . $arg1);
+    }
+
+
 }

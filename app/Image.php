@@ -19,6 +19,14 @@ class Image extends Model
     }
 
     /**
+     * @param $id
+     */
+    public static function findByUserId($user_id)
+    {
+        return self::where('user_id', $user_id)->paginate(100); 
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()
