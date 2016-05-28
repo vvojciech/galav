@@ -24,7 +24,21 @@ class ImagesController extends Controller
         $images = Image::all();
 
         return view ('images.index', [
-            'images' => $images
+            'images' => $images,
+            'title' => 'Newest images',
+        ]);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function search(Request $request) {
+
+        $images = Image::search($request->get('search-query'));
+
+        return view ('images.index', [
+            'images' => $images,
+            'title' => 'Search results for ' . $request->get('search-query'),
         ]);
     }
 

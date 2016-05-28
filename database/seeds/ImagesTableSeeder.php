@@ -42,5 +42,17 @@ class ImagesTableSeeder extends Seeder
             ]);
         }
 
+        // extra images for search
+        $file = file_get_contents('http://lorempixel.com/800/600/');
+
+        $filename = $faker->lexify($string = '??????');
+        $this->filesystem->write($filename, $file);
+
+        DB::table('images')->insert([
+            'filename' => $filename,
+            'user_id' => (int) rand(1, 4),
+            'title' => 'funny cats',
+        ]);
+
     }
 }

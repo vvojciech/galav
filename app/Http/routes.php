@@ -15,7 +15,7 @@
 Route::auth();
 Route::get('/u/{username}', 'UserController@show');
 
-// Media
+// Images
 Route::get('/', 'ImagesController@index');
 Route::get ('/upload', [
     'middleware' => 'auth',
@@ -26,3 +26,4 @@ Route::post('/upload', [
     'uses' => 'ImagesController@store'
 ]);
 Route::get('/i/{filename}', 'ImagesController@show');
+Route::get('/s/', 'ImagesController@search');

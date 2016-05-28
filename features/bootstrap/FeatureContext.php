@@ -38,8 +38,21 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext implements 
      */
     public static function cleanup(AfterSuiteScope $afterSuiteScope)
     {
-        echo 'rollback';
         Artisan::call('migrate:rollback');
+    }
+
+    /**
+     * @Then /^I click on "([^"]*)"$/
+     */
+    public function iClickOn($element)
+    {
+        $page = $this->getSession()->getPage();
+        $findName = $page->find("css", $element);
+        if (!$findName) {
+            throw new Exception($element . " could not be found");
+        } else {
+            $findName->click();
+        }
     }
 
     /**
@@ -55,8 +68,8 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext implements 
      */
     public function iSearchFor($arg1)
     {
-        $this->fillField('.search-query', $arg1);
-        $this->pressButton('.search');
+        $this->fillField('search-query', $arg1);
+        $this->pressButton('search-invoke');
     }
 
     /**
@@ -72,7 +85,7 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext implements 
      */
     public function iClickOnAnyAvailableImage()
     {
-        $this->clickLink('.gallery-item');
+        $this->iClickOn('.gallery-item');
     }
 
     /**

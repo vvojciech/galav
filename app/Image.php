@@ -13,6 +13,11 @@ class Image extends Model
         'title',
     ];
 
+    public static function search($query)
+    {
+        return self::where('title', 'LIKE', '%' . $query . '%')->paginate(100);
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

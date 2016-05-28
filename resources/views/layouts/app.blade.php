@@ -52,6 +52,19 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
+
+                    <!-- search -->
+                    <div class="pull-left">
+                        <form class="navbar-form" role="search" action="/s/">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search" name="search-query" id="search-query">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit" id="search-invoke"><i class="glyphicon glyphicon-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
