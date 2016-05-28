@@ -45,7 +45,8 @@ class CreateImagesTable extends Migration
     {
         Schema::drop('images');
 
-        $this->filesystem->deleteDir('images');
+        // @todo smarter deletion of images
+        // $this->filesystem->deleteDir('images');
 
     }
 }

@@ -96,4 +96,72 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext implements 
         $this->assertElementOnPage('.single-gallery');
     }
 
+    /**
+     * @Given I am logged in
+     */
+    public function iAmLoggedIn()
+    {
+        $this->visit('/login');
+        $this->fillField('email', 'tester@test.com');
+        $this->fillField('password', 'Test#@!1235');
+        $this->pressButton('Login');
+    }
+
+    /**
+     * @When I am on upload page
+     */
+    public function iAmOnUploadPage()
+    {
+        $this->visit('/upload');
+
+    }
+
+    /**
+     * @When I set title as :arg1
+     */
+    public function iSetTitleAs($arg1)
+    {
+        $this->fillField('title', $arg1);
+    }
+
+    /**
+     * @When I set file as :arg1
+     */
+    public function iSetFileAs($arg1)
+    {
+        $this->attachFileToField('upload_file', __DIR__ . '/features/files/' . $arg1);
+    }
+
+    /**
+     * @When I upload an image
+     */
+    public function iUploadAnImage()
+    {
+        $this->pressButton('Upload');
+    }
+
+    /**
+     * @Then I should see uploaded image
+     */
+    public function iShouldSeeUploadedImage()
+    {
+        $this->assertPageContainsText('test');
+    }
+
+    /**
+     * @Then I file should be uploaded correctly
+     */
+    public function iFileShouldBeUploadedCorrectly()
+    {
+        $this->assertPageContainsText('Image uploaded successfully');
+    }
+
+    /**
+     * @Then I should see uploaded image :arg1
+     */
+    public function iShouldSeeUploadedImage2($arg1)
+    {
+        $this->assertElementContainsText("h1", $arg1);
+    }
+
 }
