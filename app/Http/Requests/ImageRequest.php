@@ -25,7 +25,8 @@ class ImageRequest extends Request
     {
         return [
             'title' => 'required|min:3',
-            'upload_file' => 'required|between:0,10240', // 10MB (10240kB)
+            'upload_file' => 'required|mimes:jpeg,bmp,png|between:0,10240', // 10MB (10240kB)
+//            'upload_file' => 'required|between:0,10240', // 10MB (10240kB)
         ];
     }
 }

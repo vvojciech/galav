@@ -7,7 +7,6 @@ use App\Image;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use Laracasts\Flash\Flash;
 
 class ImagesController extends Controller
 {
@@ -21,7 +20,6 @@ class ImagesController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index() {
-        Flash::message('Image uploaded successfully');
 
         $images = Image::all();
 
@@ -71,13 +69,17 @@ class ImagesController extends Controller
         $filename = Image::getUniqueFilename();
         $request->merge(array('filename' => $filename));
 
+        // create file
         $request->user()->images()->create(
             $request->all()
         );
 
-        Flash::message('Image uploaded successfully');
+        // move uploaded file
+        $request->file('upload_file')->move(
+            base_path() . '/public/images/', $filename
+        );
 
-        return redirect('/i/' . $filename);
+        return redirect('/i/' . $filename)->with('message', 'Image uploaded successfully');
     }
 
 }

@@ -9,7 +9,7 @@
                     <div class="panel-heading">Upload a file</div>
                     <div class="panel-body">
 
-                        {!! Form::open(array('action' => 'ImagesController@store')) !!}
+                        {!! Form::model(new App\Image, array('action' => 'ImagesController@store', 'files'=> true)) !!}
 
                         <div class="form-group">
                             {{ Form::label('title', 'Title') }}

@@ -129,7 +129,7 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext implements 
      */
     public function iSetFileAs($arg1)
     {
-        $this->attachFileToField('upload_file', __DIR__ . '/features/files/' . $arg1);
+        $this->attachFileToField('upload_file', base_path() . '/features/files/' . $arg1);
     }
 
     /**
