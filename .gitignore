@@ -31,3 +31,6 @@ composer.phar
 /public/packages
 /node_modules
 .env
+
+#project
+public/images
