@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 
 class Authenticate
 {
+    protected $redirectTo = '/login';
+    
     /**
      * Handle an incoming request.
      *

@@ -34,3 +34,4 @@ composer.phar
 
 #project
 public/images
+storage/database

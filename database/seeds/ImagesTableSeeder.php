@@ -35,11 +35,11 @@ class ImagesTableSeeder extends Seeder
             $filename = $faker->lexify($string = '??????');
             $this->filesystem->write($filename, $file);
 
-            Image::create(array(
+            DB::table('images')->insert([
                 'filename' => $filename,
                 'user_id' => (int) rand(1, 4),
                 'title' => $faker->sentence(5),
-            ));
+            ]);
         }
 
     }

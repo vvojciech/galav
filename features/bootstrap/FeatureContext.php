@@ -38,6 +38,7 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext implements 
      */
     public static function cleanup(AfterSuiteScope $afterSuiteScope)
     {
+        echo 'rollback';
         Artisan::call('migrate:rollback');
     }
 

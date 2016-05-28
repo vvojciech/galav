@@ -11,12 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/', 'ImagesController@index');
-
+// User
 Route::auth();
+Route::get('/u/{username}', 'UserController@show');
 
-Route::get('/home', 'HomeController@index');
+// Media
+Route::get('/', 'ImagesController@index');
+Route::get ('/upload', [
+    'middleware' => 'auth',
+    'uses' => 'ImagesController@create'
+]);
+Route::post('/upload', [
+    'middleware' => 'auth',
+    'uses' => 'ImagesController@store'
+]);
+Route::get('/i/{filename}', 'ImagesController@show');
