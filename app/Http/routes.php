@@ -13,7 +13,7 @@
 
 // User
 Route::auth();
-Route::get('/u/{username}', 'UserController@show');
+Route::get('/u/{username}', 'UsersController@show');
 
 // Images
 Route::get('/', 'ImagesController@index');

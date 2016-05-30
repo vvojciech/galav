@@ -8,16 +8,15 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class UserController extends Controller
+class UsersController extends Controller
 {
-
-
+    
     public function show($username) {
 
         $user = User::findByUsername($username);
         $images = Image::findByUserId($user->id);
         
-        return view('user.show', [
+        return view('images.index', [
             'user' => $user,
             'images' => $images,
             'title' => 'Images of ' . $user->username, 

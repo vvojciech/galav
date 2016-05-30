@@ -7,6 +7,7 @@ use App\Image;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Config;
 
 class ImagesController extends Controller
 {
@@ -21,7 +22,7 @@ class ImagesController extends Controller
      */
     public function index() {
 
-        $images = Image::all();
+        $images = Image::paginate(Config::get('custom.images.pagination'));
 
         return view ('images.index', [
             'images' => $images,

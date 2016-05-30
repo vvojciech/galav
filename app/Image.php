@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Config;
 
 class Image extends Model
 {
@@ -27,7 +28,7 @@ class Image extends Model
      */
     public static function search($query)
     {
-        return self::where('title', 'LIKE', '%' . $query . '%')->paginate(100);
+        return self::where('title', 'LIKE', '%' . $query . '%')->paginate(Config::get('custom.images.pagination'));
     }
 
     /**
@@ -35,7 +36,7 @@ class Image extends Model
      */
     public static function findByUserId($user_id)
     {
-        return self::where('user_id', $user_id)->paginate(100); 
+        return self::where('user_id', $user_id)->paginate(Config::get('custom.images.pagination'));
     }
 
     /**

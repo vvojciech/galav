@@ -13,6 +13,8 @@
             @endforeach
 
     </div>
+
+    {!! $images->links() !!}
 @endsection
 
 
