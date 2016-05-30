@@ -15,11 +15,14 @@
 Route::auth();
 Route::get('/u/{username}', 'UsersController@show');
 
+
+// Image Files
+Route::get('/i/{filename}.jpg', 'ImagesController@file');
+
+
 // Images
 Route::get('/', 'ImagesController@index'); // default - by rating
 Route::get('/all/{sort}', 'ImagesController@index'); // by rating
-//Route::get('/viral', 'ImagesController@index'); // @todo by no of views
-//Route::get('/fresh', 'ImagesController@index'); // by time
 
 Route::get ('/upload', [
     'middleware' => 'auth',
@@ -31,6 +34,7 @@ Route::post('/upload', [
 ]);
 Route::get('/i/{filename}', 'ImagesController@show');
 Route::get('/s/', 'ImagesController@search');
+
 
 // Voting
 Route::get('/vote/{filename}/{vote_string}', 'VotesController@vote');

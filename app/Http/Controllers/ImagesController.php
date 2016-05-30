@@ -102,4 +102,19 @@ class ImagesController extends Controller
         return redirect('/i/' . $filename)->with('message', 'Image uploaded successfully');
     }
 
+    /**
+     * @param $filename
+     */
+    public function file($filename, $size = 'original') {
+
+        // @todo file exists
+
+
+        $img = \ImageFile::make(
+                public_path() . '/images/' . $filename
+            )->resize(300, 200);
+
+        return $img->response('jpg');
+
+    }
 }
