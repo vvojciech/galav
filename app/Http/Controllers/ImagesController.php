@@ -48,7 +48,7 @@ class ImagesController extends Controller
      */
     public function show($filename) {
 
-        $image = Image::findByFilename($filename);
+        $image = Image::getByFilename($filename);
 
         return view('images.show', ['image' => $image]);
     }

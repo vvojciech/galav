@@ -1,7 +1,7 @@
 default:
     extensions:
         Laracasts\Behat:
-            env_path: .env.testing
+            env_path: .env
         Behat\MinkExtension:
             default_session: selenium2
             base_url: http://dev.galav.com

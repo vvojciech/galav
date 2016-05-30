@@ -55,7 +55,8 @@ $app->singleton(
 // Replace with your Selenium Browser user agent for proper environment required for testing
 if ((isset($_SERVER['HTTP_USER_AGENT'])) && ($_SERVER['HTTP_USER_AGENT'] === "Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0"))
 {
-    $app->loadEnvironmentFrom('.env.testing');
+    // @todo enable, pixellorum does not work today i testing DB cannot be seed
+//    $app->loadEnvironmentFrom('.env.testing');
 }
 
 return $app;

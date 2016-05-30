@@ -13,6 +13,18 @@ class Image extends Model
         'title',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
     public static function search($query)
     {
         return self::where('title', 'LIKE', '%' . $query . '%')->paginate(100);
@@ -27,18 +39,10 @@ class Image extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    /**
      * @param $filename
      * @return mixed
      */
-    public static function findByFilename($filename)
+    public static function getByFilename($filename)
     {
         return self::where('filename', $filename)->first();
     }
@@ -50,12 +54,35 @@ class Image extends Model
     {
         do {
             $filename = str_random(6);
-            $found = self::findByFilename($filename);
+            $found = self::getByFilename($filename);
 
         } while ($found);
 
         return $filename;
     }
+
+
+    /**
+     * @param $image
+     * @param $vote
+     */
+    public static function addVote($image, $vote)
+    {
+
+        $image->votes_total++;
+
+        if ($vote > 0) {
+            $image->votes_up++;
+        } else {
+            $image->votes_down++;
+        }
+
+        $image->rating = ($image->votes_up / $image->votes_total) * 100000;
+
+        return $image->save();
+
+    }
+
 
 
 }

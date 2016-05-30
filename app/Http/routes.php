@@ -27,3 +27,6 @@ Route::post('/upload', [
 ]);
 Route::get('/i/{filename}', 'ImagesController@show');
 Route::get('/s/', 'ImagesController@search');
+
+// Voting
+Route::get('/vote/{filename}/{vote_string}', 'VotesController@vote');

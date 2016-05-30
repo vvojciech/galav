@@ -11,6 +11,8 @@
                     </div>
                     <div class="panel-body">
                         <img src="{{ url('/images/' . $image->filename) }}"/>
+
+                        @include ('images._votes')
                     </div>
                 </div>
             </div>

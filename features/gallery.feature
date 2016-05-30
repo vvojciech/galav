@@ -6,8 +6,8 @@ Feature: As a user I want to browse, view and search for images
 
   Scenario: Search result
     When I am on the homepage
-    And I search for "funny cats"
-    Then I should see results of "funny cats"
+    And I search for "funny cat"
+    Then I should see results of "funny cat"
     And I should see list of images
 
   Scenario: Viewing single image

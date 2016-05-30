@@ -13,6 +13,9 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext implements 
 {
     use Migrator;
 
+    private $data = []; // used for storing values between steps, like no of votes before and after
+
+
     /**
      * Initializes context.
      *
@@ -29,8 +32,9 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext implements 
      */
     public static function prepare(BeforeSuiteScope $beforeSuiteScope)
     {
-        Artisan::call('migrate');
-        Artisan::call('db:seed');
+        // @todo enable once seeding will be quicker
+//        Artisan::call('migrate');
+//        Artisan::call('db:seed');
     }
 
     /**
@@ -38,7 +42,7 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext implements 
      */
     public static function cleanup(AfterSuiteScope $afterSuiteScope)
     {
-        Artisan::call('migrate:rollback');
+//        Artisan::call('migrate:rollback');
     }
 
     /**
@@ -172,5 +176,100 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext implements 
         $this->visit('/u/' . $arg1);
     }
 
+
+    /**
+     * voting.feature
+     */
+
+    /**
+     * @When I am on a single image
+     */
+    public function iAmOnASingleImage()
+    {
+        $this->visit('/i/qbvsoa');
+    }
+
+    /**
+     * @When I should see voting options
+     */
+    public function iShouldSeeVotingOptions()
+    {
+        $this->assertPageContainsText('upvote');
+        $this->assertPageContainsText('downvote');
+
+        $this->assertPageContainsText('points');
+
+        // @todo abstract this a little bit since we are using this also below
+        $page = $this->getSession()->getPage();
+        $score = $page->find('css', '.score');
+
+        if (null === $score) {
+            throw new \LogicException('Could not find the element');
+        }
+
+        if (!$score->isVisible()) {
+            throw new \LogicException('Element is not visible');
+        }
+
+        $this->data['score'] = (int) $score->getHtml();
+
+    }
+
+    /**
+     * @Then I should click :arg1 link
+     */
+    public function iShouldClickLink($arg1)
+    {
+        $this->clickLink($arg1);
+    }
+
+    /**
+     * @Then I should have score higher with :arg1 point
+     */
+    public function iShouldHaveScoreHigherWithPoint($arg1)
+    {
+
+        // @todo abstract
+        $page = $this->getSession()->getPage();
+        $score = $page->find('css', '.score');
+
+        if (null === $score) {
+            throw new \LogicException('Could not find the element');
+        }
+
+        if (!$score->isVisible()) {
+            throw new \LogicException('Element is not visible');
+        }
+
+        if ((int) ($score->getHtml()) != $this->data['score'] + $arg1 ) {
+            throw new \LogicException('Score was not updated ');
+        }
+
+    }
+
+
+    /**
+     * @Then I should have score lower with :arg1 point
+     */
+    public function iShouldHaveScoreLowerWithPoint($arg1)
+    {
+
+        // @todo abstract
+        $page = $this->getSession()->getPage();
+        $score = $page->find('css', '.score');
+
+        if (null === $score) {
+            throw new \LogicException('Could not find the element');
+        }
+
+        if (!$score->isVisible()) {
+            throw new \LogicException('Element is not visible');
+        }
+
+        if ((int) ($score->getHtml()) != $this->data['score'] - $arg1 ) {
+            throw new \LogicException('Score was not updated ');
+        }
+
+    }
 
 }

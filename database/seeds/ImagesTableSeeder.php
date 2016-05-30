@@ -22,6 +22,10 @@ class ImagesTableSeeder extends Seeder
      */
     public function run()
     {
+        // @todo remove lorempixel with something more stable
+        return;
+
+
         $faker = Faker\Factory::create();
 
         Eloquent::unguard();
@@ -42,16 +46,16 @@ class ImagesTableSeeder extends Seeder
             ]);
         }
 
-        // extra images for search
+        // extra image with known url for test
         $file = file_get_contents('http://lorempixel.com/800/600/');
 
-        $filename = $faker->lexify($string = '??????');
+        $filename = 'qbvsoa';
         $this->filesystem->write($filename, $file);
 
         DB::table('images')->insert([
             'filename' => $filename,
             'user_id' => (int) rand(1, 4),
-            'title' => 'funny cats',
+            'title' => 'funny cat',
         ]);
 
     }
