@@ -23,16 +23,13 @@ class ImagesTableSeeder extends Seeder
     public function run()
     {
         // @todo remove lorempixel with something more stable
-        return;
-
+//        return;
+//        Eloquent::unguard();
+//        DB::table('images')->truncate();
 
         $faker = Faker\Factory::create();
 
-        Eloquent::unguard();
-
-        DB::table('images')->truncate();
-
-        for($i = 0; $i < 10; $i++){
+        for($i = 0; $i < 100; $i++){
 
             $file = file_get_contents('http://lorempixel.com/800/600/');
 
