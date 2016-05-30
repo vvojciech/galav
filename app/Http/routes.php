@@ -16,7 +16,11 @@ Route::auth();
 Route::get('/u/{username}', 'UsersController@show');
 
 // Images
-Route::get('/', 'ImagesController@index');
+Route::get('/', 'ImagesController@index'); // default - by rating
+Route::get('/all/{sort}', 'ImagesController@index'); // by rating
+//Route::get('/viral', 'ImagesController@index'); // @todo by no of views
+//Route::get('/fresh', 'ImagesController@index'); // by time
+
 Route::get ('/upload', [
     'middleware' => 'auth',
     'uses' => 'ImagesController@create'
