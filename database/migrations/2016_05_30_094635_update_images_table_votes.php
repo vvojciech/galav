@@ -13,6 +13,7 @@ class UpdateImagesTableVotes extends Migration
     public function up()
     {
         Schema::create('votes', function ($table) {
+            $table->increments('id');
             $table->integer('image_id')->unsigned();
             $table->tinyinteger('vote');
             $table->string('ip');

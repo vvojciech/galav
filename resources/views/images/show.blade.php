@@ -14,6 +14,7 @@
             @include ('images._votes')
 
             @include ('images._tags')
+            @include ('images._report')
 
         </div>
 

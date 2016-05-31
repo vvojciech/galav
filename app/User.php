@@ -24,13 +24,18 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public static function findByUsername($username)
-    {
-        return self::where('username', $username)->first();
-    }
-
     public function images()
     {
         return $this->hasMany(Image::class);
+    }
+
+    public function reports()
+    {
+        return $this->hasMany(Report::class); 
+    }
+
+    public static function findByUsername($username)
+    {
+        return self::where('username', $username)->first();
     }
 }

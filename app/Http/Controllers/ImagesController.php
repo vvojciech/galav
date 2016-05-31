@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ImageRequest;
 use App\Image;
+use App\ReportReason;
 use App\Tag;
 use Illuminate\Http\Request;
 
@@ -71,7 +72,10 @@ class ImagesController extends Controller
 
         $image = Image::getByFilename($filename);
 
-        return view('images.show', ['image' => $image]);
+        return view('images.show', [
+            'image' => $image,
+            'report_reasons' => ReportReason::lists('reason', 'id')
+        ]);
     }
 
     /**
