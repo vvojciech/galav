@@ -13,8 +13,17 @@ var elixir = require('laravel-elixir');
 
 elixir(function (mix) {
     var bootstrapPath = 'node_modules/bootstrap-sass/assets';
-    mix.sass('app.scss')
-        .version('public/css/app.css')
+    var bootswatchPath = 'vendor/thomaspark/bootswatch';
+
+
+
+    mix
+        .copy(bootswatchPath + '/darkly', 'resources/assets/sass/darkly')
         .copy(bootstrapPath + '/fonts', 'public/fonts')
-        .copy(bootstrapPath + '/javascripts/bootstrap.min.js', 'public/js');
+        .copy(bootstrapPath + '/javascripts/bootstrap.min.js', 'public/js')
+
+        .sass('app.scss', './public/css/app.css')
+        .version('public/css/app.css')
+    ;
+
 });
