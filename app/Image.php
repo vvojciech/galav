@@ -22,6 +22,11 @@ class Image extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag');
+    }
+
     /**
      * @param $query
      * @return mixed

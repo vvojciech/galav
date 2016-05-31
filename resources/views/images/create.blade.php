@@ -22,6 +22,11 @@
                         </div>
 
                         <div class="form-group">
+                            {{ Form::label('tags', 'Tags:') }}
+                            {{ Form::text('tags', '') }}
+                        </div>
+
+                        <div class="form-group">
                             {{ Form::submit('Upload') }}
                         </div>
 

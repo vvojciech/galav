@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ImageRequest;
 use App\Image;
+use App\Tag;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -83,16 +84,30 @@ class ImagesController extends Controller
     /**
      *
      */
-    public function store(ImageRequest $request) {
+    public function store(ImageRequest $request)
+    {
 
         // get unique filename
         $filename = Image::getUniqueFilename();
         $request->merge(array('filename' => $filename));
 
         // create file
-        $request->user()->images()->create(
+        $image = $request->user()->images()->create(
             $request->all()
         );
+
+        // create tags
+        $tag_ids = [];
+        $tags = explode(',', $request->get('tags'));
+        foreach ($tags as $tag) {
+            $tag = trim(strtolower($tag));
+            $tag = Tag::firstOrCreate(['tag' => $tag]);
+            $tag_ids[] = $tag->id;
+        }
+
+        // sync tags with inputs
+        $image->tags()->sync($tag_ids);
+
 
         // move uploaded file
         $request->file('upload_file')->move(

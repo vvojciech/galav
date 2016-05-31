@@ -13,6 +13,8 @@
 
             @include ('images._votes')
 
+            @include ('images._tags')
+
         </div>
 
         <div class="row">

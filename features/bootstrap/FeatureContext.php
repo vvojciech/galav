@@ -121,6 +121,10 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext implements 
     }
 
     /**
+     * upload.feature
+     */
+
+    /**
      * @When I set title as :arg1
      */
     public function iSetTitleAs($arg1)
@@ -134,6 +138,22 @@ class FeatureContext extends Behat\MinkExtension\Context\MinkContext implements 
     public function iSetFileAs($arg1)
     {
         $this->attachFileToField('upload_file', base_path() . '/features/files/' . $arg1);
+    }
+
+    /**
+     * @When I set tags as :arg1
+     */
+    public function iSetTagsAs($arg1)
+    {
+        $this->fillField('tags', $arg1);
+    }
+
+    /**
+     * @Then I should see tags :arg1
+     */
+    public function iShouldSeeTags($arg1)
+    {
+        $this->assertPageContainsText($arg1);
     }
 
     /**
