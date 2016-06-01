@@ -31,7 +31,7 @@ class ImagesTableSeeder extends Seeder
 
         for($i = 0; $i < 10; $i++){
 
-            $file = file_get_contents('http://lorempixel.com/800/600/');
+            $file = file_get_contents('http://lorempixel.com/' . (rand (10, 60) * 10) . '/' . (rand (10, 60) * 10) . '/');
 
             $filename = $faker->lexify($string = '??????');
             $this->filesystem->write($filename, $file);

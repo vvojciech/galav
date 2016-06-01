@@ -25,7 +25,8 @@ class ImagesController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index($sort = 'default') {
+    public function index($sort = 'default')
+    {
 
         // validate sorting
         if (!in_array($sort, ['default', 'hot', 'fresh'])) {
@@ -48,7 +49,7 @@ class ImagesController extends Controller
 
         $images = Image::orderBy($order[0], $order[1])->paginate(Config::get('custom.images.pagination'));
 
-        return view ('images.index', [
+        return view('images.index', [
             'images' => $images,
             'title' => $title,
         ]);
@@ -57,11 +58,12 @@ class ImagesController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function search(Request $request) {
+    public function search(Request $request)
+    {
 
         $images = Image::search($request->get('search-query'));
 
-        return view ('images.index', [
+        return view('images.index', [
             'images' => $images,
             'title' => 'Search results for ' . $request->get('search-query'),
         ]);
@@ -71,7 +73,8 @@ class ImagesController extends Controller
      * @param $filename
      * @return mixed
      */
-    public function show($filename) {
+    public function show($filename)
+    {
 
 //        $user = ;
 
@@ -80,11 +83,11 @@ class ImagesController extends Controller
         return view('images.show', [
             'image' => $image,
             'report_reasons' => ReportReason::lists('reason', 'id'),
-            'comments' => Comment::findByImageId($image->id), 
+            'comments' => Comment::findByImageId($image->id),
             'favourite' => (
-                Auth::check()
-                    ? Favourite::where('image_id', $image->id)->where('user_id', Auth::user()->id)->first()
-                    : null
+            Auth::check()
+                ? Favourite::where('image_id', $image->id)->where('user_id', Auth::user()->id)->first()
+                : null
             )
         ]);
     }
@@ -92,8 +95,9 @@ class ImagesController extends Controller
     /**
      * @return mixed
      */
-    public function create() {
-        return view ('images.create');
+    public function create()
+    {
+        return view('images.create');
     }
 
     /**
@@ -135,14 +139,28 @@ class ImagesController extends Controller
     /**
      * @param $filename
      */
-    public function file($filename, $size = 'original') {
+    public function file($filename, $size = 'original')
+    {
 
-        // @todo file exists
+        $img = null;
 
+        switch ($size) {
+            case 't': //thumb
 
-        $img = \ImageFile::make(
-                public_path() . '/images/' . $filename
-            )->resize(300, 200);
+                $img = \ImageFile::make(
+                    public_path() . '/images/' . $filename
+                )->resize(350, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
+                break;
+
+            default:
+                $img = \ImageFile::make(
+                    public_path() . '/images/' . $filename
+                );
+
+        }
 
         return $img->response('jpg');
 

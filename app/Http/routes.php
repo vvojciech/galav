@@ -17,7 +17,10 @@ Route::get('/u/{username}', 'UsersController@uploaded');
 Route::get('/u/{username}/favourites', 'UsersController@favourites');
 
 
-// Image Files
+// Image Files @todo support for other extensions
+Route::get('/i/{filename}-{size}.jpg', 'ImagesController@file')
+    ->where(['filename' => '[a-z0-9]+', 'size' => '[t]']);
+
 Route::get('/i/{filename}.jpg', 'ImagesController@file');
 
 

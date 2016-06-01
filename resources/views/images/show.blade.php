@@ -9,7 +9,7 @@
                 Uploaded by <a href="{{ url('/u/' . $image->user->username) }}">{{ $image->user->username }}</a>
             </div>
 
-            <img src="{{ url('/images/' . $image->filename) }}"/>
+            <img src="{{ url('/i/' . $image->filename . '.jpg') }}"/>
 
             @include ('images._votes')
             @include ('images._tags')
