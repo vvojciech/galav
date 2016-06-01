@@ -47,3 +47,7 @@ Route::post('/report/', 'ReportsController@report');
 
 // Favourites
 Route::post('/favourite/', 'FavouritesController@toggle');
+
+
+// Comments
+Route::post('/comment/', 'CommentsController@store');

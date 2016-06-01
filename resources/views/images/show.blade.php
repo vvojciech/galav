@@ -27,7 +27,7 @@
 
             <div class="tab-content">
                 <div id="comments" class="tab-pane fade in active">
-                    <p>@todo comments</p>
+                    @include ('images._comments')
                 </div>
                 <div id="related" class="tab-pane fade in">
                     <p>@todo related</p>

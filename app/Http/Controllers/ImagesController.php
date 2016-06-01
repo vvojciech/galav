@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Favourite;
 use App\Http\Requests\ImageRequest;
 use App\Image;
@@ -79,6 +80,7 @@ class ImagesController extends Controller
         return view('images.show', [
             'image' => $image,
             'report_reasons' => ReportReason::lists('reason', 'id'),
+            'comments' => Comment::findByImageId($image->id), 
             'favourite' => (
                 Auth::check()
                     ? Favourite::where('image_id', $image->id)->where('user_id', Auth::user()->id)->first()

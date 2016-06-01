@@ -40,6 +40,8 @@ class ImagesTableSeeder extends Seeder
                 'filename' => $filename,
                 'user_id' => (int) rand(1, 4),
                 'title' => $faker->sentence(5),
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime()
             ]);
         }
 
@@ -52,11 +54,17 @@ class ImagesTableSeeder extends Seeder
 
         $filename = 'qbvsoa';
 
-        DB::table('images')->insert([
-            'filename' => $filename,
-            'user_id' => (int) rand(1, 4),
-            'title' => 'funny cat',
-        ]);
+        $exemplary = DB::table('images')->where('filename', $filename)->first();
+
+        if (!$exemplary) {
+            DB::table('images')->insert([
+                'filename' => $filename,
+                'user_id' => (int) rand(1, 4),
+                'title' => 'funny cat',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime()
+            ]);
+        }
 
     }
 }

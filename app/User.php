@@ -39,6 +39,11 @@ class User extends Authenticatable
         return $this->hasMany(Favourite::class);
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     public static function findByUsername($username)
     {
         return self::where('username', $username)->first();
