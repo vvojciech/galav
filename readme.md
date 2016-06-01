@@ -11,3 +11,25 @@ php artisan migrate
 php artisan db:seed
 ```
 
+## Done
+Core functionality:
+- Browsing images
+- Upload of images
+- User profiles page
+- Tags
+- Gif support
+- Resizing images
+- Voting
+- Reporting/Flaging
+
+## TBD
+- Auth via FB/Twitter
+- Related images
+- Favourite images
+- Profile points
+- Comments
+- Comment scoring
+- Download image
+- Theme (!)
+- Ajaxify (pagination, voting, reporting)
+- Admin Panel (!)
