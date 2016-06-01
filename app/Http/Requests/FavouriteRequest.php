@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class ReportRequest extends Request
+class FavouriteRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class ReportRequest extends Request
     {
         return [
             'filename' => 'required',  // @todo check if it exists + check implications on performance
-            'report_reason_id' => 'required|exists:report_reasons,id',
+            'action' => 'in:add,remove'
         ];
     }
 }

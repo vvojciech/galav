@@ -31,7 +31,12 @@ class User extends Authenticatable
 
     public function reports()
     {
-        return $this->hasMany(Report::class); 
+        return $this->hasMany(Report::class);
+    }
+
+    public function favourites()
+    {
+        return $this->hasMany(Favourite::class);
     }
 
     public static function findByUsername($username)

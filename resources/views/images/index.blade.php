@@ -12,9 +12,10 @@
                 @include ('images._item')
             @endforeach
 
-    </div>
+        </div>
 
-    {!! $images->links() !!}
+    {{-- @todo pagination {!! $images->links() !!} --}}
+
 @endsection
 
 

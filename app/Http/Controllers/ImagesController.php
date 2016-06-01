@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Favourite;
 use App\Http\Requests\ImageRequest;
 use App\Image;
 use App\ReportReason;
@@ -9,6 +10,7 @@ use App\Tag;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 
 class ImagesController extends Controller
@@ -70,11 +72,18 @@ class ImagesController extends Controller
      */
     public function show($filename) {
 
+//        $user = ;
+
         $image = Image::getByFilename($filename);
 
         return view('images.show', [
             'image' => $image,
-            'report_reasons' => ReportReason::lists('reason', 'id')
+            'report_reasons' => ReportReason::lists('reason', 'id'),
+            'favourite' => (
+                Auth::check()
+                    ? Favourite::where('image_id', $image->id)->where('user_id', Auth::user()->id)->first()
+                    : null
+            )
         ]);
     }
 

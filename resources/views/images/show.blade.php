@@ -12,9 +12,9 @@
             <img src="{{ url('/images/' . $image->filename) }}"/>
 
             @include ('images._votes')
-
             @include ('images._tags')
             @include ('images._report')
+            @include ('images._favourite')
 
         </div>
 

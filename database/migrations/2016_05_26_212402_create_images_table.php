@@ -24,12 +24,13 @@ class CreateImagesTable extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('filename');
+            $table->string('filename')->unique();
             $table->string('title');
             $table->integer('user_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
+
         });
 
         $this->filesystem->createDir('images');

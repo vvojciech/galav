@@ -29,7 +29,7 @@ class ImagesTableSeeder extends Seeder
 
         $faker = Faker\Factory::create();
 
-        for($i = 0; $i < 1; $i++){
+        for($i = 0; $i < 10; $i++){
 
             $file = file_get_contents('http://lorempixel.com/800/600/');
 
@@ -47,9 +47,10 @@ class ImagesTableSeeder extends Seeder
         /* @todo deal with file overwrite
         $file = file_get_contents('http://lorempixel.com/800/600/');
 
-        $filename = 'qbvsoa';
         $this->filesystem->write($filename, $file);
         */
+
+        $filename = 'qbvsoa';
 
         DB::table('images')->insert([
             'filename' => $filename,

@@ -1,6 +1,3 @@
-REPORT
-
-
 {!! Form::model(new App\Report, array('action' => 'ReportsController@report')) !!}
 
 {{ Form::hidden('filename', $image->filename) }}

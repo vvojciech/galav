@@ -13,7 +13,8 @@
 
 // User
 Route::auth();
-Route::get('/u/{username}', 'UsersController@show');
+Route::get('/u/{username}', 'UsersController@uploaded');
+Route::get('/u/{username}/favourites', 'UsersController@favourites');
 
 
 // Image Files
@@ -42,3 +43,7 @@ Route::get('/vote/{filename}/{vote_string}', 'VotesController@vote');
 
 // Reporting
 Route::post('/report/', 'ReportsController@report');
+
+
+// Favourites
+Route::post('/favourite/', 'FavouritesController@toggle');
