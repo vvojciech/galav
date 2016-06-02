@@ -9,7 +9,8 @@
         "laravel/framework": "5.2.*",
         "laravelcollective/html": "^5.2",
         "intervention/image": "^2.3",
-        "thomaspark/bootswatch": "^3.3"
+        "thomaspark/bootswatch": "^3.3",
+        "laravel/socialite": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

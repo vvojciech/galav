@@ -21,13 +21,14 @@ Core functionality:
 - Resizing images
 - Voting
 - Reporting/Flaging
+- Favourite images
+- Comments
 
 ## TBD
 - Auth via FB/Twitter
+- Avatar
 - Related images
-- Favourite images
 - Profile points
-- Comments
 - Comment scoring
 - Download image
 - Theme (!)

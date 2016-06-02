@@ -17,6 +17,15 @@ Route::get('/u/{username}', 'UsersController@uploaded');
 Route::get('/u/{username}/favourites', 'UsersController@favourites');
 
 
+// Social Auth
+Route::get('/auth/facebook', 'Auth\AuthController@authFacebookRedirect');
+Route::get('/auth/facebook/callback', 'Auth\AuthController@authFacebookHandle');
+Route::get('/auth/google', 'Auth\AuthController@authGoogleRedirect');
+Route::get('/auth/google/callback', 'Auth\AuthController@authGoogleHandle');
+Route::get('/auth/twitter', 'Auth\AuthController@authTwitterRedirect');
+Route::get('/auth/twitter/callback', 'Auth\AuthController@authTwitterHandle');
+
+
 // Image Files @todo support for other extensions
 Route::get('/i/{filename}-{size}.jpg', 'ImagesController@file')
     ->where(['filename' => '[a-z0-9]+', 'size' => '[t]']);

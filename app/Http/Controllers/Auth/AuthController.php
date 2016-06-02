@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\OauthIdentity;
 use App\User;
-use Validator;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -69,4 +71,64 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    public function authFacebookRedirect() {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function authFacebookHandle() {
+        $user = Socialite::driver('facebook')->user();
+        $this->handleProviderLogin($user, 'facebook');
+    }
+
+    public function authGoogleRedirect() {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function authGoogleHandle() {
+        $user = Socialite::driver('facebook')->user();
+        $this->handleProviderLogin($user, 'google');
+    }
+
+    public function authTwitterRedirect() {
+        return Socialite::driver('twitter')->redirect();
+    }
+
+    public function authTwitterHandle() {
+        $user = Socialite::driver('twitter')->user();
+        $this->handleProviderLogin($user, 'twitter');
+    }
+
+    
+    public function handleProviderLogin($social_profile, $provider) {
+
+        // check for existing account via provider uid
+        $oauth_identity = OauthIdentity::where('uid', $social_profile->id)->where('provider', $provider)->first();
+
+        if (!$oauth_identity) { // oauth not found
+
+            // @todo redirect if there is no email
+
+            $user = User::create([
+                'username' => ($social_profile->getNickname() ? $social_profile->getNickname() : $social_profile->getName()), // @todo verification
+                'email' => ($social_profile->getEmail() ? $social_profile->getEmail() : 'fake' . rand(1, 1000) . '@test.com'), // @todo cases where you dont have that
+                'password' => '',
+            ]);
+
+            OauthIdentity::create([
+                'user_id' => $user->id,
+                'uid' => $social_profile->id,
+                'provider' => $provider,
+            ]);
+
+        } else { // we already have a user, lets auth him
+            $user = User::where('id', $oauth_identity->user_id)->first();
+        }
+
+        Auth::login($user);
+
+        return redirect('/')->with('message', 'Welcome to Galav!');
+
+    }
+
 }
