@@ -34,3 +34,4 @@ Core functionality:
 - Theme (!)
 - Ajaxify (pagination, voting, reporting)
 - Admin Panel (!)
+- Passwordless login
