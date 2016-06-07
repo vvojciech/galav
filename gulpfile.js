@@ -15,10 +15,9 @@ elixir(function (mix) {
     var bootstrapPath = 'node_modules/bootstrap-sass/assets';
     var bootswatchPath = 'vendor/thomaspark/bootswatch';
 
-
-
     mix
-        .copy(bootswatchPath + '/darkly', 'resources/assets/sass/darkly')
+        // change here to apply different bootswatch theme
+        .copy(bootswatchPath + '/slate', 'resources/assets/sass/bootswatch-theme')
         .copy(bootstrapPath + '/fonts', 'public/fonts')
         .copy(bootstrapPath + '/javascripts/bootstrap.min.js', 'public/js')
 

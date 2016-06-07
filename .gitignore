@@ -36,3 +36,6 @@ composer.phar
 #project
 public/images
 storage/database
+public/build/
+public/css/app.css
+public/css/app.css.map
