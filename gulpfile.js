@@ -16,13 +16,21 @@ elixir(function (mix) {
     var bootswatchPath = 'vendor/thomaspark/bootswatch';
 
     mix
-        // change here to apply different bootswatch theme
+    /*
+     * change here to apply different bootswatch theme
+     */
         .copy(bootswatchPath + '/slate', 'resources/assets/sass/bootswatch-theme')
         .copy(bootstrapPath + '/fonts', 'public/fonts')
         .copy(bootstrapPath + '/javascripts/bootstrap.min.js', 'public/js')
 
-        .sass('app.scss', './public/css/app.css')
-        .version('public/css/app.css')
+        .sass('app.scss')
+        .styles([
+            'app.css',
+        ], 'public/css/all.css', 'public/css')
+        .scripts([
+            "app.js"
+        ], 'public/js/all.js', 'resources/assets/js')
+        .version(["css/all.css", "js/all.js"]);
     ;
 
 });
