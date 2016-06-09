@@ -11,7 +11,7 @@
             @endforeach
         </div>
 
-    {{-- @todo pagination {!! $images->links() !!} --}}
+    {!! $images->links() !!}
 
 @endsection
 

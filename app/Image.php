@@ -37,14 +37,6 @@ class Image extends Model
     }
 
     /**
-     * @param $id
-     */
-    public static function findByUserId($user_id)
-    {
-        return self::where('user_id', $user_id)->paginate(Config::get('custom.images.pagination'));
-    }
-
-    /**
      * @param $user_id
      */
     public static function findFavouriteImagesByUserId($user_id)
