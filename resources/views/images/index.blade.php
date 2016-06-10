@@ -12,6 +12,7 @@
         </div>
 
     {!! $images->links() !!}
+    </div>
 
 @endsection
 
