@@ -7,6 +7,7 @@ use App\Favourite;
 use App\Http\Requests\ImageRequest;
 use App\Image;
 use App\ReportReason;
+use App\Repositories\ImageRepository;
 use App\Tag;
 use Illuminate\Http\Request;
 
@@ -16,10 +17,14 @@ use Illuminate\Support\Facades\Config;
 
 class ImagesController extends Controller
 {
+    /**
+     * @var ImageRepository
+     */
+    protected $repository;
 
-    public function __construct()
+    public function __construct(ImageRepository $imageRepository)
     {
-
+        $this->repository = $imageRepository;
     }
 
     /**
@@ -47,7 +52,7 @@ class ImagesController extends Controller
                 break;
         }
 
-        $images = Image::orderBy($order[0], $order[1])->paginate(Config::get('custom.images.pagination'));
+        $images = $this->repository->orderBy($order[0], $order[1])->paginate(Config::get('custom.images.pagination'));
 
         return view('images.index', [
             'images' => $images,
