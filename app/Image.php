@@ -36,10 +36,11 @@ class Image extends Model
         return self::where('title', 'LIKE', '%' . $query . '%')->paginate(Config::get('custom.images.pagination'));
     }
 
+
     /**
      * @param $user_id
      */
-    public static function findFavouriteImagesByUserId($user_id)
+    public function findByUserId($user_id)
     {
         return self::where('user_id', $user_id)->paginate(Config::get('custom.images.pagination'));
     }
@@ -88,7 +89,5 @@ class Image extends Model
         return $image->save();
 
     }
-
-
 
 }

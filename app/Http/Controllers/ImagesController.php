@@ -7,7 +7,6 @@ use App\Favourite;
 use App\Http\Requests\ImageRequest;
 use App\Image;
 use App\ReportReason;
-use App\Repositories\ImageRepository;
 use App\Tag;
 use Illuminate\Http\Request;
 
@@ -17,31 +16,37 @@ use Illuminate\Support\Facades\Config;
 
 class ImagesController extends Controller
 {
-    /**
-     * @var ImageRepository
-     */
-    protected $repository;
-
-    public function __construct(ImageRepository $imageRepository)
+    public function __construct()
     {
-        $this->repository = $imageRepository;
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index($sort = 'default', $page = 1)
+    public function index($sort = 'default')
     {
 
+        // validate sorting
+        if (!in_array($sort, ['default', 'hot', 'fresh'])) {
+            $sort = 'default';
+        }
+        // get the default one
+        if ($sort == 'default') {
+            $sort = Config::get('custom.images.default_sort');
+        }
+
         // map sorting and adjust title
+        $order = ['id', 'DESC'];
         $title = 'Newest images';
         switch ($sort) {
             case 'hot':
+                $order = ['rating', 'ASC'];
                 $title = 'Hottest images';
                 break;
         }
 
-        $images = $this->repository->findIndex([], $sort, $page);
+        $images = Image::orderBy($order[0], $order[1])->paginate(Config::get('custom.images.pagination'));
+
 
         return view('images.index', [
             'images' => $images,

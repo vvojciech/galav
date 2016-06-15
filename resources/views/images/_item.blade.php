@@ -1,4 +1,4 @@
-<div id="1" class="item col-md-3 col-sm-6 gallery-item">
+<div class="item col-md-3 col-sm-6 gallery-item">
 
     <h4><a href="{{ url('/i/' . $image->filename) }}">{{ $image->title }}</a></h4>
     <a href="{{ url('/i/' . $image->filename) }}">

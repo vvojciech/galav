@@ -159,7 +159,6 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-        Prettus\Repository\Providers\RepositoryServiceProvider::class,
 
 
     ],
