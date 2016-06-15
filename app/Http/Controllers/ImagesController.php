@@ -30,29 +30,18 @@ class ImagesController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index($sort = 'default')
+    public function index($sort = 'default', $page = 1)
     {
 
-        // validate sorting
-        if (!in_array($sort, ['default', 'hot', 'fresh'])) {
-            $sort = 'default';
-        }
-        // get the default one
-        if ($sort == 'default') {
-            $sort = Config::get('custom.images.default_sort');
-        }
-
         // map sorting and adjust title
-        $order = ['id', 'DESC'];
         $title = 'Newest images';
         switch ($sort) {
             case 'hot':
-                $order = ['rating', 'ASC'];
                 $title = 'Hottest images';
                 break;
         }
 
-        $images = $this->repository->orderBy($order[0], $order[1])->paginate(Config::get('custom.images.pagination'));
+        $images = $this->repository->findIndex([], $sort, $page);
 
         return view('images.index', [
             'images' => $images,

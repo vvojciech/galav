@@ -35,7 +35,7 @@ Route::get('/i/{filename}.jpg', 'ImagesController@file');
 
 // Images
 Route::get('/', 'ImagesController@index'); // default - by rating
-Route::get('/all/{sort}', 'ImagesController@index'); // by rating
+Route::get('/all/{sort}/{page?}', 'ImagesController@index'); // by rating
 
 Route::get ('/upload', [
     'middleware' => 'auth',
