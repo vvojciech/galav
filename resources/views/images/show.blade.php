@@ -51,7 +51,7 @@
             <div class="col-sm-4">
 
                 @include ('images._navigation')
-                
+
             </div>
         </div>
 
