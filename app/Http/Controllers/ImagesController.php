@@ -40,16 +40,16 @@ class ImagesController extends Controller
         Session::put('images.sort', $sort);
 
         // map sorting and adjust title
-        $order = ['id', 'DESC'];
+        $imagesQuery = Image::orderBy('id', 'DESC');
         $title = 'Newest images';
         switch ($sort) {
             case 'hot':
-                $order = ['rating', 'ASC'];
+                $imagesQuery = Image::orderBy('rating', 'DESC')->orderBy('id', 'DESC');
                 $title = 'Hottest images';
                 break;
         }
 
-        $images = Image::orderBy($order[0], $order[1])->paginate(Config::get('custom.images.pagination'));
+        $images = $imagesQuery->paginate(Config::get('custom.images.pagination'));
 
 
         return view('images.index', [

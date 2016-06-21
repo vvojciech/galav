@@ -23,7 +23,7 @@ class UpdateImagesTableVotes extends Migration
         });
 
         Schema::table('images', function ($table) {
-            $table->integer('rating')->unsigned()->default(100000);
+            $table->integer('rating')->unsigned()->default(0);
             $table->integer('votes_total')->unsigned()->default(0);
             $table->integer('votes_up')->unsigned()->default(0);
             $table->integer('votes_down')->unsigned()->default(0);

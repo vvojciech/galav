@@ -45,15 +45,27 @@ class Image extends Model
     {
         //@todo take status into account
         switch ($sort) {
-//            case 'hot':
-//                $prev = Image::whereRaw('rating < ' . $currentImage->rating)->orderBy('rating', 'DESC')->first();
-//                $next = Image::whereRaw('rating > ' . $currentImage->rating)->orderBy('rating', 'ASC')->first();
-//                break;
+            case 'hot':
+                $prev = Image
+                    ::whereRaw(
+                        'rating > ' . $currentImage->rating
+                        . ' OR (rating = ' . $currentImage->rating . ' AND id > ' . $currentImage->id . ')'
+                    )
+                    ->orderBy('rating', 'ASC')->orderBy('id', 'ASC')->first();
+                $next = Image
+                    ::whereRaw(
+                        'rating < ' . $currentImage->rating
+                        . ' OR (rating = ' . $currentImage->rating . ' AND id < ' . $currentImage->id . ')'
+                    )
+                    ->orderBy('rating', 'DESC')->orderBy('id', 'DESC')->first();
+                break;
             default:
-                $prev = Image::whereRaw('id < ' . (int) $currentImage->id)->orderBy('id', 'DESC')->first();
-                $next = Image::whereRaw('id > ' . (int) $currentImage->id)->orderBy('id', 'ASC')->first();
+                $prev = Image::whereRaw('id > ' . (int) $currentImage->id)->orderBy('id', 'ASC')->first();
+                $next = Image::whereRaw('id < ' . (int) $currentImage->id)->orderBy('id', 'DESC')->first();
                 break;
         }
+
+//        var_dump($prev, $next);
 
         return [
             'prev' => $prev,
