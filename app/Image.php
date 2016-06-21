@@ -36,6 +36,31 @@ class Image extends Model
         return self::where('title', 'LIKE', '%' . $query . '%')->paginate(Config::get('custom.images.pagination'));
     }
 
+    /**
+     * @param $sort
+     * @param $current
+     * @return array
+     */
+    public static function getNeighbours($sort, $currentImage)
+    {
+        //@todo take status into account
+        switch ($sort) {
+//            case 'hot':
+//                $prev = Image::whereRaw('rating < ' . $currentImage->rating)->orderBy('rating', 'DESC')->first();
+//                $next = Image::whereRaw('rating > ' . $currentImage->rating)->orderBy('rating', 'ASC')->first();
+//                break;
+            default:
+                $prev = Image::whereRaw('id < ' . (int) $currentImage->id)->orderBy('id', 'DESC')->first();
+                $next = Image::whereRaw('id > ' . (int) $currentImage->id)->orderBy('id', 'ASC')->first();
+                break;
+        }
+
+        return [
+            'prev' => $prev,
+            'next' => $next,
+        ];
+    }
+
 
     /**
      * @param $user_id

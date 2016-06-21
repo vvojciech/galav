@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Session;
 
 class ImagesController extends Controller
 {
@@ -34,6 +35,9 @@ class ImagesController extends Controller
         if ($sort == 'default') {
             $sort = Config::get('custom.images.default_sort');
         }
+
+        // sort sorting in session
+        Session::put('images.sort', $sort);
 
         // map sorting and adjust title
         $order = ['id', 'DESC'];
@@ -83,6 +87,7 @@ class ImagesController extends Controller
             'image' => $image,
             'report_reasons' => ReportReason::lists('reason', 'id'),
             'comments' => Comment::findByImageId($image->id),
+            'neighbours' => Image::getNeighbours(Session::get('images.sort'), $image),
             'favourite' => (
             Auth::check()
                 ? Favourite::where('image_id', $image->id)->where('user_id', Auth::user()->id)->first()
