@@ -2,7 +2,7 @@
 
 return [
     'images' => [
-        'pagination' => 5,
+        'pagination' => 20,
         'default_sort' => 'hot'
     ]
 ];
