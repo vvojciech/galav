@@ -1,4 +1,4 @@
-<a href="javascript:void(0)">Report</a>
+<a href="javascript:void(0)" class="btn btn-default">Report</a>
 <div class="report" style="display: none; ">
     {!! Form::model(new App\Report, array('action' => 'ReportsController@report')) !!}
 
