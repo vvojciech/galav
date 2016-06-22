@@ -23,6 +23,7 @@ Core functionality:
 - Reporting/Flaging
 - Favourite images
 - Comments
+- Image navigation
 
 ## TBD
 - Auth via FB/Twitter
