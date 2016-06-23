@@ -153,10 +153,19 @@ class ImagesController extends Controller
 
                 $img = \ImageFile::make(
                     public_path() . '/images/' . $filename
-                )->resize(350, null, function ($constraint) {
+                );
+                $ratio = $img->width() / $img->height();
+                $width = $height = 350;
+
+                if ($ratio < 0.5) {
+                    $height = 700;
+                } 
+
+                $img->fit($width, $height, function ($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
                 });
+
                 break;
 
             default:
