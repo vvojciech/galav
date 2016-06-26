@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\OauthIdentity;
 use App\User;
+use DebugBar\DebugBar;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Controller;
@@ -78,7 +79,7 @@ class AuthController extends Controller
 
     public function authFacebookHandle() {
         $user = Socialite::driver('facebook')->user();
-        $this->handleProviderLogin($user, 'facebook');
+        return $this->handleProviderLogin($user, 'facebook');
     }
 
     public function authGoogleRedirect() {
@@ -87,7 +88,7 @@ class AuthController extends Controller
 
     public function authGoogleHandle() {
         $user = Socialite::driver('facebook')->user();
-        $this->handleProviderLogin($user, 'google');
+        return $this->handleProviderLogin($user, 'google');
     }
 
     public function authTwitterRedirect() {
@@ -96,11 +97,17 @@ class AuthController extends Controller
 
     public function authTwitterHandle() {
         $user = Socialite::driver('twitter')->user();
-        $this->handleProviderLogin($user, 'twitter');
+        return $this->handleProviderLogin($user, 'twitter');
     }
 
-    
-    public function handleProviderLogin($social_profile, $provider) {
+
+    /**
+     * @param $social_profile
+     * @param $provider
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function handleProviderLogin($social_profile, $provider)
+    {
 
         // check for existing account via provider uid
         $oauth_identity = OauthIdentity::where('uid', $social_profile->id)->where('provider', $provider)->first();
