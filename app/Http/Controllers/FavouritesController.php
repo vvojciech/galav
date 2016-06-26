@@ -32,7 +32,9 @@ class FavouritesController extends Controller
                 // todo report error
             }
 
-            return redirect('/i/' . $request->get('filename'))->with('message', 'Image was removed from favourites');
+            return response()->json(['error' => '0', 'result' => 'removed']);
+
+            //return redirect('/i/' . $request->get('filename'))->with('message', 'Image was removed from favourites');
 
         } else {
             $request->merge(array('image_id' => $image->id));
@@ -41,7 +43,9 @@ class FavouritesController extends Controller
                 $request->all()
             );
 
-            return redirect('/i/' . $request->get('filename'))->with('message', 'Image was added to favourites');
+            return response()->json(['error' => '0', 'result' => 'added']);
+
+//            return redirect('/i/' . $request->get('filename'))->with('message', 'Image was added to favourites');
         }
 
 

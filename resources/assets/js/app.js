@@ -21,7 +21,7 @@ $grid.imagesLoaded().progress( function() {
 $('.favourite-action').on('click', function(e) {
 
     var $target = $( event.target );
-    
+
     $.ajax({
         type: "POST",
         url: "/favourite/",
@@ -30,7 +30,18 @@ $('.favourite-action').on('click', function(e) {
             action: $target.data('action')
         },
         success: function (data) {
-            console.log(data);
+            if (data.error) {
+                // todo handle error
+            }
+
+            // todo handle 'remove and add' better
+            if (data.result == 'removed') {
+                $target.data('action', 'add');
+                $target.removeClass('fa-heart').addClass('fa-heart-o')
+            } else if (data.result == 'added') {
+                $target.data('action', 'remove');
+                $target.removeClass('fa-heart-o').addClass('fa-heart')
+            }
         },
         dataType: 'json'
     });
