@@ -1,15 +1,12 @@
-<div class="row">
-    @if (isset($neighbours['next']))
-        <a href="{{ url('/i/' . $neighbours['next']->filename) }}">
-            <img style="width: 100px;" src="{{ url('/i/' . $neighbours['next']->filename . '-t.jpg') }}"/><br />
-            next >>
+<div class="row navigation">
+    @if (isset($neighbours['prev']))
+        <a class="prev" href="{{ url('/i/' . $neighbours['prev']->filename) }}">
+            <img src="{{ url('/i/' . $neighbours['prev']->filename . '-t.jpg') }}"/>
         </a>
     @endif
-    <br />
-    @if (isset($neighbours['prev']))
-        <a href="{{ url('/i/' . $neighbours['prev']->filename) }}">
-            <img style="width: 100px;" src="{{ url('/i/' . $neighbours['prev']->filename . '-t.jpg') }}"/><br />
-            >>prev
+    @if (isset($neighbours['next']))
+        <a class="next" href="{{ url('/i/' . $neighbours['next']->filename) }}">
+            <img src="{{ url('/i/' . $neighbours['next']->filename . '-t.jpg') }}"/>
         </a>
     @endif
 

@@ -23,9 +23,6 @@
                 <!-- Collapsed Hamburger -->
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                     <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
                 </button>
 
                 <!-- Branding Image -->
@@ -51,7 +48,7 @@
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Search" name="search-query" id="search-query">
                                 <div class="input-group-btn">
-                                    <button class="btn btn-default" type="submit" id="search-invoke"><i class="glyphicon glyphicon-search"></i></button>
+                                    <button class="btn btn-default" type="submit" id="search-invoke"><i class="fa fa-search"></i></button>
                                 </div>
                             </div>
                         </form>

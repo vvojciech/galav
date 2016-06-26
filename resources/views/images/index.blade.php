@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <div class="col-lg-12">
+        <div class="row">
             <h1 class="page-header">{{ $title }}</h1>
         </div>
         <div class="row no-gutter images-container">

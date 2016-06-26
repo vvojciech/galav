@@ -10,9 +10,6 @@ body {
   min-width: 320px;
 }
 
-/*
-  Bootstrap extend
-  */
 .row.no-gutter {
   margin-left: 1px;
   margin-right: 1px;
@@ -23,7 +20,6 @@ body {
     padding-left: 1px;
   }
 }
-
 
 /*
   Index
@@ -57,4 +53,15 @@ body {
   */
 .favourite, .voting {
   display:inline-block;
+}
+
+.navigation {
+  img {
+    width: 44%
+  }
+  .prev {
+    img {
+      margin-right: 5%;
+    }
+  }
 }

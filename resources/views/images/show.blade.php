@@ -48,7 +48,7 @@
                 </div>
 
             </div>
-            <div class="col-md-4 hidden-xs">
+            <div class="col-md-4 col-sm-4 hidden-xs">
 
                 @include ('images._navigation')
 
