@@ -9,6 +9,22 @@
 body {
   min-width: 320px;
 }
+
+/*
+  Bootstrap extend
+  */
+.row.no-gutter {
+  margin-left: 1px;
+  margin-right: 1px;
+
+  [class*='col-']:not(:first-child),
+  [class*='col-']:not(:last-child) {
+    padding-right: 1px;
+    padding-left: 1px;
+  }
+}
+
+
 /*
   Index
   */
@@ -35,18 +51,10 @@ body {
   }
 }
 
+
 /*
-  Bootstrap extend
+  Single image
   */
-
-.row.no-gutter {
-  margin-left: 1px;
-  margin-right: 1px;
-
-  [class*='col-']:not(:first-child),
-  [class*='col-']:not(:last-child) {
-    padding-right: 1px;
-    padding-left: 1px;
-  }
+.favourite, .voting {
+  display:inline-block;
 }
-

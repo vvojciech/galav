@@ -17,13 +17,11 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-2">
+                    <div class="col-xs-10 col-sm-6">
                         @include ('images._favourite')
-                    </div>
-                    <div class="col-xs-4">
                         @include ('images._votes')
                     </div>
-                    <div class="col-xs-4">
+                    <div class="col-sm-4 hidden-xs">
                         @include ('images._tags')
                     </div>
                     <div class="col-xs-2">
