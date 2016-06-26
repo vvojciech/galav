@@ -60,6 +60,14 @@ body {
 /*
   Single image
   */
+.image-container {
+  background: #0e0e0e;
+
+  img {
+    margin: 0 auto;
+  }
+}
+
 .favourite, .voting {
   display:inline-block;
 }

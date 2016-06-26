@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-8 col-sm-8 col-xs-12">
 
-                <div class="">
+                <div class="image-container">
                     <img class="img-responsive" src="{{ url('/i/' . $image->filename . '.jpg') }}"/>
                 </div>
                 <div class="panel">

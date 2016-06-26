@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 
 class ImagesController extends Controller
@@ -165,16 +167,15 @@ class ImagesController extends Controller
                     $constraint->upsize();
                 });
 
-                break;
+                return $img->response();
 
             default:
-                $img = \ImageFile::make(
-                    public_path() . '/images/' . $filename
-                );
+                $response = Response::make(File::get(public_path() . '/images/' . $filename));
 
+                // todo fix headers here please
+                $response->header('Content-Type', 'image/gif');
+                return $response;
         }
-
-        return $img->response('jpg');
 
     }
 }
