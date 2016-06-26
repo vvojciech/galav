@@ -11,24 +11,13 @@
 
                         {!! Form::model(new App\Image, array('action' => 'ImagesController@store', 'files'=> true)) !!}
 
-                        <div class="form-group">
-                            {{ Form::label('title', 'Title') }}
-                            {{ Form::text('title') }}
-                        </div>
+                        {!! BootForm::text('title') !!}
 
-                        <div class="form-group">
-                            {{ Form::label('upload_file', 'File') }}
-                            {{ Form::file('upload_file') }}
-                        </div>
+                        {!! BootForm::file('upload_file') !!}
 
-                        <div class="form-group">
-                            {{ Form::label('tags', 'Tags:') }}
-                            {{ Form::text('tags', '') }}
-                        </div>
+                        {!! BootForm::text('tags', '', '') !!}
 
-                        <div class="form-group">
-                            {{ Form::submit('Upload') }}
-                        </div>
+                        {!! BootForm::submit('Upload') !!}
 
                         {!! Form::close() !!}
 
