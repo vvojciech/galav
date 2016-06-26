@@ -75,16 +75,15 @@ $('.vote-action').on('click', function (e) {
     });
 });
 
+
 /*
- Flagging
+    Comments
  */
 
-$('.report-action').on('click', function (e) {
+$('.comment-adder-show-action').on('click', function(e) {
+
     var $target = $(event.target);
+    var adderElement = $target.data('adder');
 
-    var popupSelector = $target.data('popup');
-
-    $(popupSelector).modal({
-        keyboard: false
-    })
+    $(adderElement).show();
 });

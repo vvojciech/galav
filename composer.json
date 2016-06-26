@@ -11,7 +11,8 @@
         "intervention/image": "^2.3",
         "thomaspark/bootswatch": "^3.3",
         "laravel/socialite": "^2.0",
-        "prettus/l5-repository": "^2.5"
+        "prettus/l5-repository": "^2.5",
+        "watson/bootstrap-form": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

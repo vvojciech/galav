@@ -30,21 +30,8 @@
 
                     </div>
                 </div>
-                <ul class="nav nav-tabs nav-justified">
-                    <li role="presentation" class="active"><a data-toggle="tab" href="#comments">Comments</a></li>
-                    <li role="presentation"><a data-toggle="tab" href="#related">Related</a></li>
-                </ul>
 
-
-                <div class="tab-content">
-                    <div id="comments" class="tab-pane fade in active">
-                        @include ('images._comments')
-                    </div>
-                    <div id="related" class="tab-pane fade in">
-                        <p>@todo related</p>
-                    </div>
-                </div>
-
+                @include ('images._comments')
 
             </div>
             <div class="col-md-4 col-sm-4 hidden-xs">

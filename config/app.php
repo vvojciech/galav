@@ -159,7 +159,8 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-
+        Collective\Html\HtmlServiceProvider::class,
+        Watson\BootstrapForm\BootstrapFormServiceProvider::class,
 
     ],
 
@@ -180,6 +181,7 @@ return [
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
         'Blade' => Illuminate\Support\Facades\Blade::class,
+        'BootForm' => Watson\BootstrapForm\Facades\BootstrapForm::class,
         'Cache' => Illuminate\Support\Facades\Cache::class,
         'Config' => Illuminate\Support\Facades\Config::class,
         'Cookie' => Illuminate\Support\Facades\Cookie::class,
