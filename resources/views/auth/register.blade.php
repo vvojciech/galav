@@ -2,19 +2,25 @@
 
 @section('content')
 
-    {{ Html::link('/auth/facebook', 'facebook', true)}}
-    {{ Html::link('/auth/google', 'google', true)}}
-    {{ Html::link('/auth/twitter', 'twitter', true)}}
-
     <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading">Sign up for a new account</div>
                 <div class="panel-body">
+
                     <div class="row">
-                        <a href="/login">Already have an account?</a>
+                        <div class="col-md-6 text-center">
+                            <a class="btn btn-lg btn-primary" href="/auth/facebook">
+                                <i class="fa fa-facebook-square fa-3x pull-left"></i>Sign up using<br/> Facebook</a>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <a class="btn btn-lg btn-primary" href="/auth/twitter">
+                                <i class="fa fa-twitter-square fa-3x pull-left"></i>Sign up using <br/>Twitter</a>
+                        </div>
+
                     </div>
+                    <hr class="hr-text" data-content="OR SIGN UP USING EMAIL">
 
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
@@ -83,6 +89,13 @@
                             </div>
                         </div>
                     </form>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-xs-10">
+                            <a href="/login">Already a member? Login here!</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
