@@ -46,3 +46,31 @@ $('.favourite-action').on('click', function(e) {
         dataType: 'json'
     });
 });
+
+
+/*
+ Voting
+ */
+$('.vote-action').on('click', function(e) {
+
+    var $target = $( event.target );
+
+    $.ajax({
+        type: "POST",
+        url: "/vote/",
+        data: {
+            filename: $target.data('filename'),
+            vote: $target.data('vote')
+        },
+        success: function (data) {
+            if (data.error) {
+                // todo handle error
+            }
+            $('.score').html(
+                data.votes_up - data.votes_down
+            );
+
+        },
+        dataType: 'json'
+    });
+});

@@ -50,7 +50,8 @@ Route::get('/s/', 'ImagesController@search');
 
 
 // Voting
-Route::get('/vote/{filename}/{vote_string}', 'VotesController@vote');
+//Route::get('/vote/{filename}/{vote_string}', 'VotesController@vote');
+Route::post('/vote/', 'VotesController@vote');
 
 
 // Reporting
