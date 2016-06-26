@@ -9,22 +9,24 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-md-8 col-sm-8 col-xs-12">
 
                 <div class="row">
-                    <img src="{{ url('/i/' . $image->filename . '.jpg') }}"/>
+                    <div class="col-md-12">
+                        <img class="img-responsive" src="{{ url('/i/' . $image->filename . '.jpg') }}"/>
+                    </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-xs-2">
                         @include ('images._favourite')
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-xs-4">
                         @include ('images._votes')
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-xs-4">
                         @include ('images._tags')
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-xs-2">
                         @include ('images._report')
                     </div>
 
@@ -48,7 +50,7 @@
                 </div>
 
             </div>
-            <div class="col-sm-4">
+            <div class="col-md-4 hidden-xs">
 
                 @include ('images._navigation')
 
