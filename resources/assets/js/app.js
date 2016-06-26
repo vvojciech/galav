@@ -10,17 +10,17 @@ var $grid = $('.images-container').isotope({
     transitionDuration: 0,
 });
 
-$grid.imagesLoaded().progress( function() {
+$grid.imagesLoaded().progress(function () {
     $grid.isotope('layout');
 });
 
 
 /*
-    Favourite
+ Favourite
  */
-$('.favourite-action').on('click', function(e) {
+$('.favourite-action').on('click', function (e) {
 
-    var $target = $( event.target );
+    var $target = $(event.target);
 
     $.ajax({
         type: "POST",
@@ -51,9 +51,9 @@ $('.favourite-action').on('click', function(e) {
 /*
  Voting
  */
-$('.vote-action').on('click', function(e) {
+$('.vote-action').on('click', function (e) {
 
-    var $target = $( event.target );
+    var $target = $(event.target);
 
     $.ajax({
         type: "POST",
@@ -73,4 +73,18 @@ $('.vote-action').on('click', function(e) {
         },
         dataType: 'json'
     });
+});
+
+/*
+ Flagging
+ */
+
+$('.report-action').on('click', function (e) {
+    var $target = $(event.target);
+
+    var popupSelector = $target.data('popup');
+
+    $(popupSelector).modal({
+        keyboard: false
+    })
 });

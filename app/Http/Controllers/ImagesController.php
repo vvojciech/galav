@@ -78,14 +78,13 @@ class ImagesController extends Controller
      */
     public function show($filename)
     {
-
-//        $user = ;
-
         $image = Image::getByFilename($filename);
+
+        $blank_reason = collect(['0' => '---']);
 
         return view('images.show', [
             'image' => $image,
-            'report_reasons' => ReportReason::lists('reason', 'id'),
+            'report_reasons' => $blank_reason->merge(ReportReason::lists('reason', 'id')),
             'comments' => Comment::findByImageId($image->id),
             'neighbours' => Image::getNeighbours(Session::get('images.sort'), $image),
             'favourite' => (
