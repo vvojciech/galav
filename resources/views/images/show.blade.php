@@ -4,8 +4,10 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">{{ $image->title }}</h1>
-                Uploaded by <a href="{{ url('/u/' . $image->user->username) }}">{{ $image->user->username }}</a>
+                <div class="page-header">
+                    <h1>{{ $image->title }}</h1>
+                    Uploaded by <a href="{{ url('/u/' . $image->user->username) }}">{{ $image->user->username }}</a>
+                </div>
             </div>
         </div>
         <div class="row">

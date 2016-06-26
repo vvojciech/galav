@@ -33,7 +33,7 @@ class Comment extends Model
      */
     public static function findByImageId($image_id)
     {
-        return self::where('image_id', $image_id)->with('user')->get();
+        return self::where('image_id', $image_id)->with('user')->orderBy('id', 'DESC')->get();
     }
 
 

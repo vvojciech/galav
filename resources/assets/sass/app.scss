@@ -9,7 +9,16 @@
 body {
   min-width: 320px;
 }
-
+.navbar {
+  margin-bottom: 5px 0;
+}
+.page-header {
+  margin: 0;
+  border: none;
+  h1 {
+    margin: 5px 0;
+  }
+}
 .row.no-gutter {
   margin-left: 1px;
   margin-right: 1px;

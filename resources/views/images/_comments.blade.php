@@ -1,6 +1,6 @@
 <div class="panel comments">
     <div class="panel-heading">
-        Comments
+        Latest comments
         <button class="btn btn-info comment-adder-show-action" data-adder=".comment-adder">Add Comment</button>
     </div>
     <div class="panel-body comment-adder">
@@ -8,17 +8,14 @@
         {!! Form::model(new App\Comment, array('action' => 'CommentsController@store')) !!}
 
         {{ Form::hidden('filename', $image->filename) }}
-        {!! BootForm::textarea('comment') !!}
+        {!! BootForm::text('comment', 'Comment (todo explain rules)') !!}
 
-        <div class="form-group">
-            {!!  BootForm::text('Comment') !!}
-        </div>
+        {!! BootForm::submit('Comment') !!}
 
         {!! Form::close() !!}
 
     </div>
     <div class="panel-body">
-
         <div>
             @foreach ($comments as $comment)
                 <div class="comment">
