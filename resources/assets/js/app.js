@@ -77,13 +77,20 @@ $('.vote-action').on('click', function (e) {
 
 
 /*
-    Comments
+ Comments
  */
 
-$('.comment-adder-show-action').on('click', function(e) {
+$('.comment-adder-show-action').on('click', function (e) {
 
     var $target = $(event.target);
     var adderElement = $target.data('adder');
 
     $(adderElement).show();
+});
+
+/*
+ Fluidbox
+ */
+$(document).ready(function () {
+    $('.image-container').fluidbox();
 });

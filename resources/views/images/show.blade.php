@@ -12,10 +12,9 @@
         </div>
         <div class="row">
             <div class="col-md-8 col-sm-8 col-xs-12">
-
-                <div class="image-container">
+                <a class="image-container" href="{{ url('/i/' . $image->filename . '.jpg') }}">
                     <img class="img-responsive" src="{{ url('/i/' . $image->filename . '.jpg') }}"/>
-                </div>
+                </a>
                 <div class="panel">
                     <div class="panel-body">
 
